@@ -38,3 +38,19 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'dockerDotNetApp'
+        Contents: |
+          deployment.yaml
+          service.yaml
+        TargetFolder: '$(build.artifactstagingdirectory)'
+
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'aks-connetcion'
+        manifests: |
+          $(build.artifactstagingdirectory)/deployment.yaml 
+          $(build.artifactstagingdirectory)service.yaml
+        containers: $(containerRegistry)/$(imageRepository)
