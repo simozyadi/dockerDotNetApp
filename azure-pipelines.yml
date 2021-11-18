@@ -52,5 +52,5 @@ stages:
         kubernetesServiceConnection: 'aks-connetcion'
         manifests: |
           $(build.artifactstagingdirectory)/deployment.yaml 
-          $(build.artifactstagingdirectory)service.yaml
+          $(build.artifactstagingdirectory)/service.yaml
         containers: $(containerRegistry)/$(imageRepository):latest
