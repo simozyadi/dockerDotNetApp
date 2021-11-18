@@ -53,4 +53,4 @@ stages:
         manifests: |
           $(build.artifactstagingdirectory)/deployment.yaml 
           $(build.artifactstagingdirectory)service.yaml
-        containers: $(containerRegistry)/$(imageRepository)
+        containers: $(containerRegistry)/$(imageRepository):latest
